@@ -1,19 +1,44 @@
-# Cesar Cipher
-# shift = 3
+# Riddle an alternate version of Cesar Cipher
 # Currently only supports Encrypting and Lower case characters
 
-plain = 'abcdefghijklmopqrstuvwxyz'
+SHIFT = 3  # The shift variable for encryption
+# function to convert input data to ascii
 
-def encrypt(text):
-    text = text.lower()
+
+def text_to_ascii(data):
+    data_ascii = list()  # stores the ascii value of all the input char
+    for char in data:
+        index = ord(char)
+        data_ascii.append(index)
+    return data_ascii
+
+
+# encrypting fuction
+def encrypt(data):
+    text = text_to_ascii(data)
     temp = 0
     cipher = ''
     for letter in text:
-        if letter in plain:
-            index = ord(letter) - ord('a')
-            temp = (index + 3) % 26
-            cipher += chr(temp + ord('a'))
+        if letter in range(128):
+            if letter == 32:
+                cipher += chr(letter)
+            elif letter < 64:
+                index = letter - ord('0')
+                temp = (index + SHIFT) % 10
+                cipher += chr(temp + ord('0'))
+            elif letter < 97:
+                index = letter - ord('A')
+                temp = (index + SHIFT) % 26
+                cipher += chr(temp + ord('A'))
+            else:
+                index = letter - ord('a')
+                temp = (index + SHIFT) % 26
+                cipher += chr(temp + ord('a'))
+
     return cipher
 
 
-print(encrypt("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+if __name__ == '__main__':
+    usr_data = input("Enter the text to Encrypt:")
+    encrypted = encrypt(usr_data)
+    print(encrypted)
