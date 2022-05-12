@@ -12,12 +12,25 @@ def text_to_ascii(data):
         data_ascii.append(index)
     return data_ascii
 
-
+def remove_space(data):
+    spaces = [pos for pos, char in enumerate(data) if char == " "]
+    data.replace(" ","")
+    return data,spaces
+    
+def add_space(data,spaces):
+    for space in spaces:
+        data = data[:space] + ' ' + data[space:]
+    return data
+    
+    
 # encrypting fuction
 def encrypt(data):
+    data,space = remove_space(data)
+    
     text = text_to_ascii(data)
     temp = 0
     cipher = ''
+    
     for letter in text:
         if letter in range(128):
             if letter == 32:
@@ -34,7 +47,8 @@ def encrypt(data):
                 index = letter - ord('a')
                 temp = (index + SHIFT) % 26
                 cipher += chr(temp + ord('a'))
-
+                
+    add_space(cipher,space)
     return cipher
 
 
