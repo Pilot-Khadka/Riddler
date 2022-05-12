@@ -13,8 +13,8 @@ def text_to_ascii(data):
     return data_ascii
 
 def remove_space(data):
-    spaces = [pos for pos, char in enumerate(data) if char == " "]
-    data.replace(" ","")
+    spaces = [pos for pos, char in enumerate(data) if char == ' ']
+    data.replace(' ','')
     return data,spaces
     
 def add_space(data,spaces):
