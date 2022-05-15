@@ -1,6 +1,7 @@
 # Riddle an alternate version of Cesar Cipher
 # Currently only supports Encrypting
-SHIFT = 3  # The shift variable for encryption
+#import pyfiglet
+SHIFT = 4  # The shift variable for encryption
 # function to convert input data to ascii
 
 
@@ -71,7 +72,7 @@ def decrypt(data):
         # shift sucessfuly found
         plain = decrypter(shift, data)
     else:
-        plain = False
+        plain = "CANNOT DECRYPT!"
 
     return plain
 
@@ -103,10 +104,23 @@ def decrypter(shift, data):
 
 
 if __name__ == '__main__':
-    usr_data = input("Enter the text to Encrypt:")
-    encrypted = encrypt(usr_data)
-    print(encrypted)
 
-    # data input for decrypt
-    cipher = input("Enter the Data:")
-    print(decrypt(cipher))
+   # intro = pyfiglet.figlet_format("RIDDLER")
+    # print(intro)
+
+    print("""
+          [1]. Encrypt
+          [2]. Decrypt
+          """)
+    option = int(input("Select an Option:"))
+
+    if option == 1:
+        usr_data = input("Enter the text to Encrypt:")
+        encrypted = encrypt(usr_data)
+        print(encrypted)
+    elif option == 2:
+        # data input for decrypt
+        cipher = input("Enter the Data:")
+        print(decrypt(cipher))
+    else:
+        print("Invalid Input")
