@@ -12,7 +12,6 @@ def text_to_ascii(data):
         data_ascii.append(index)
     return data_ascii
 
-
 def remove_space(data):
     spaces = [pos for pos, char in enumerate(data) if char == ' ']
     data.replace(' ','')
@@ -53,8 +52,10 @@ def encrypt(data):
     add_space(cipher,space)
     return cipher
 
-
 if __name__ == '__main__':
     usr_data = input("Enter the text to Encrypt:")
-    encrypted = encrypt(usr_data)
-    print(encrypted)
+    encrypted = cipher('encrypt',usr_data)
+    print("Encrypted cipher: ",encrypted)
+    
+    decrypted = cipher('decrypt',encrypted)
+    print("Decrypted cipher: ",decrypted)
