@@ -12,9 +12,10 @@ def text_to_ascii(data):
     return data_ascii
 
 def remove_space(data):
-    spaces = [pos for pos, char in enumerate(data) if char == " "]
-    data.replace(" ","")
+    spaces = [pos for pos, char in enumerate(data) if char == ' ']
+    data.replace(' ','')
     return data,spaces
+    
     
 def add_space(data,spaces):
     for space in spaces:
@@ -22,8 +23,8 @@ def add_space(data,spaces):
     return data
     
     
-# encrypting and decrypting fuction
-def cipher(mode,data):
+# encrypting fuction
+def encrypt(data):
     data,space = remove_space(data)
     
     text = text_to_ascii(data)
@@ -34,29 +35,17 @@ def cipher(mode,data):
         if letter in range(128):
             if letter == 32:
                 cipher += chr(letter)
-                
             elif letter < 64:
                 index = letter - ord('0')
-                if mode == 'encrypt':
-                    temp = (index + SHIFT) % 10
-                elif mode == 'decrypt':
-                    temp = (index - SHIFT) % 10
+                temp = (index + SHIFT) % 10
                 cipher += chr(temp + ord('0'))
-                
             elif letter < 97:
                 index = letter - ord('A')
-                if mode == 'encrypt':
-                    temp = (index + SHIFT) % 26
-                elif mode == 'decrypt':
-                    temp = (index - SHIFT) % 26
+                temp = (index + SHIFT) % 26
                 cipher += chr(temp + ord('A'))
-                
             else:
                 index = letter - ord('a')
-                if mode == 'encrypt':
-                    temp = (index + SHIFT) % 26
-                elif mode == 'decrypt':
-                    temp = (index - SHIFT) % 26
+                temp = (index + SHIFT) % 26
                 cipher += chr(temp + ord('a'))
                 
     add_space(cipher,space)
