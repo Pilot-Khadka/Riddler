@@ -17,7 +17,7 @@ def text_to_ascii(data):
 
 # encrypting fuction
 def encrypt(data):
-    text = text_to_ascii(data)
+        text = text_to_ascii(data)
     temp = 0
     cipher = ''
     for letter in text:
@@ -38,7 +38,6 @@ def encrypt(data):
                 cipher += chr(temp + ord('a'))
 
     return cipher
-
 
 # Decryption will decrypt the given text by finding most common letter
 # ETA are most repeated letters in English
@@ -125,3 +124,4 @@ if __name__ == '__main__':
         print(decrypt(cipher))
     else:
         print("Invalid Input")
+
